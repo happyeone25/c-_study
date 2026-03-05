@@ -1,0 +1,42 @@
+include <string>
+string s = to_string(num); // 현재 숫자를 문자열로 변환
+
+크기 순대로 정리한 거 sort(시작, 끝)
+벡터 정의할 때 vector<int> v1(N);
+<algorithm 사용했다는 가정 하 sort 사용하는 방법>
+#include <algorithm>
+sort(v.begin(), v.end());   시작과 끝 위치 전달. 정렬할 범위만 넘겨주는 거
+내림차순으로 정리하고 싶다면 sort(v1.begin(), v1.end(), greater<int>());
+근데 sort 방식으로 만들면 N 만금의 칸이 핑료하므로총 만들어지는 메모리는 N * 4 (int형이면) 
+그래서 overflow되지 않으려면 카운팅 방식 사용.
+카운팅 방식: 그냥 말 그대로 그 수가 몇번 나왔나 세면 그 수만큼 메모리를 낭비할 필요가 없음.
+함수 좌표처럼 두개 한번에 저장하고 싶을 때 pair 사용 가능. vector<pair<int, int>> v(N)
+<sort 방식은 다양하게 활용 가능>
+sort(v.begin(), v.end(), compare)) 하고 내가 compare이라는 함수를 미리 정의해놓았다면 그 규칙대로 정렬이 됨
+<문자열에서 크기 비교>
+"apple" < "banana"  참
+"cat" < "can"  거짓
+<벡터 내 중복된 걸 없애고 싶을 때>
+unique(v.begin(), v.end()) // 중복된 것들을 벡터의 맨 뒤쪽으로 밀어버림. 그리고 중복된 것들이 시작되는 지저을 알려줌.
+v.erase(위치, v.end())  // unique가 알려준 지점부터 벡터의 끝까지를 다 삭제함.
+<stable_sort 는 값이 같을 때 입력된 순서를 절대 바꾸지 않음>
+ stable_sort(v.begin(), v.end(), compare);
+<lower_bound 사용법>
+순위표에서 내가 들고 있는 숫자가 어디 있는지 위치를 알려주기
+auto it = lower_bound(temp.begin(), temp.end(), v[i]);
+<binary_search(시작, 끝, 내가 궁금한 숫자)>
+strin, double ,int 다 가능.
+<set을 쓰는 방법>
+-vector은 같은 값 넣어도 되는데 이건 중복 안됨.
+-찾기/삭제가 빠름
+-index로 접근하지 않고(번호가 없기 때문에) 화살표인 interator로 접근
+-s.inset("Asker")  넣기
+-s.erase("Askar") 지우기
+-if (s.find("Baha") != s.end()) {} 데이터가 이쓴ㄴ지 확인하기. find는 주소를 주는데, end가 아니면 있다는 뜻 
+-**vector는 순서가 주용할 때 씀. set은 중복을 없애야 하거나, 특정 데이터를수시로 넣고 빼야 하거나 항상 정렬되어 있어야 할 때 사용**
+-크기순으로 알아서 정렬됨
+--만약에 역순으로 출력하고 싶다? 
+<auto it 사용법>
+포인터랑 비슷하게 작용하는데, 예를 들어 for(auto it = s.begin(); it != s.rend(); it++) 이라고 하면 역순으로 가능. 근데 값 꺼내려면 *it 이렇게 해야 함
+<시간초과 판별하는 방법>
+데이터 개수가 N -> N^2했을 때 1억이 넘으면 1초 초과  --> 이때는 스킬을 사용하는 게 나음
