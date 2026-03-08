@@ -6,6 +6,9 @@ using namespace std;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    cout << "Helo World" << endl;
+    
+    for (int i=0; i<3; i++) {
+        cout << i << "\n";
+    }
     return 0;
 }
